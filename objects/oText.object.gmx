@@ -156,6 +156,22 @@ Access denied! Please "+scrEndColorflag()+
 &gt;Welcome Jack Daniel.
 "+scrEndColorflag()
 alarm[2] = 50;
+break;
+case 3:
+txt+=scrColorflag(c_white)+"
+ &gt;You neeed move to another computer to use databse.
+ &gt;Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
+        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+
+"+scrEndColorflag();
+break;
+case 4:
+txt+=scrColorflag(c_white)+"
+ &gt;Level 4 
+ &gt;Thank you for playing :)
+
+"+scrEndColorflag();
     }
 a = 0;
 }
@@ -282,7 +298,7 @@ draw_text_colored(x,y,txt+normal);
 
 switch(level)
 {
-case 1:
+case 1: //---------------------------------------------------LEVEL1---------------------------------------------------
     if keyboard_string = "&gt;motd"
     {
         txt += scrColorflag(c_red)+"
@@ -499,7 +515,7 @@ inputText = keyboard_string;
 break;
 
 
-case 2:
+case 2://---------------------------------------------------LEVEL2---------------------------------------------------
 if keyboard_string = "&gt;motd"
     {
        txt+=scrColorflag(c_red)+"
@@ -604,17 +620,13 @@ else if keyboard_string = "&gt;cat"
     {
         txt+=scrColorflag(c_red)+"
         You must specify a file to display"+scrEndColorflag()+scrColorflag(c_gray)+"
-        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"
-        cat: "+scrEndColorflag()+scrColorflag(c_aqua)+"
-        filename
+        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"cat "+scrEndColorflag()+scrColorflag(c_aqua)+"filename
         
 "
 +scrEndColorflag()
 scrText(scrColorflag(c_red)+"
         You must specify a file to display"+scrEndColorflag()+scrColorflag(c_gray)+"
-        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"
-        cat: "+scrEndColorflag()+scrColorflag(c_aqua)+"
-        filename
+        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"cat "+scrEndColorflag()+scrColorflag(c_aqua)+"filename
         
 "
 +scrEndColorflag());
@@ -828,6 +840,444 @@ inputText = keyboard_string;
 
 
 break;
+case 3://---------------------------------------------------LEVEL3---------------------------------------------------
+if keyboard_string = "&gt;motd"
+    {
+       txt+=scrColorflag(c_white)+"
+ You neeed move to another computer to use databse.
+ Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
+        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+
+"+scrEndColorflag();
+scrText(scrColorflag(c_white)+"
+ You neeed move to another computer to use databse.
+ Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
+        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+
+"+scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+}
+else if keyboard_string = "&gt;help"
+    {
+        txt += scrColorflag(c_yellow)+"
+        motd"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Display the last system message"+scrEndColorflag()+ 
+        scrColorflag(c_yellow)+"
+        ssh"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Move to another computer"+scrEndColorflag()+  
+        scrColorflag(c_yellow)+"
+        sudo"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Use"+scrEndColorflag()+ scrColorflag(c_yellow)+" command "+scrEndColorflag()+ scrColorflag(c_white)+"as andministrator"+scrEndColorflag()+ 
+        scrColorflag(c_yellow)+"
+        ls"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - List files"+scrEndColorflag()+  
+        scrColorflag(c_yellow)+"
+        help"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Display tihs help"+scrEndColorflag()+
+        scrColorflag(c_yellow)+"
+        cat"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Display file content
+        
+        Type your"+scrEndColorflag()+scrEndColorflag()+
+        scrColorflag(c_yellow)+" command "+scrEndColorflag()+
+        scrColorflag(c_white)+"below and press enter to execute it.
+
+"+scrEndColorflag();
+scrText(scrColorflag(c_yellow)+"
+        motd"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Display the last system message"+scrEndColorflag()+ 
+        scrColorflag(c_yellow)+"
+        ssh"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Move to another computer"+scrEndColorflag()+  
+        scrColorflag(c_yellow)+"
+        sudo"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Run"+scrEndColorflag()+ scrColorflag(c_yellow)+" command "+scrEndColorflag()+ scrColorflag(c_white)+"as andministrator"+scrEndColorflag()+ 
+        scrColorflag(c_yellow)+"
+        ls"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - List files"+scrEndColorflag()+  
+        scrColorflag(c_yellow)+"
+        help"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Display tihs help"+scrEndColorflag()+
+        scrColorflag(c_yellow)+"
+        cat"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Display file content
+        
+        Type your"+scrEndColorflag()+scrEndColorflag()+
+        scrColorflag(c_yellow)+" command "+scrEndColorflag()+
+        scrColorflag(c_white)+"below and press enter to execute it.
+
+"+scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+    }
+
+else if keyboard_string = "&gt;ssh"
+    {
+        txt+=scrColorflag(c_red)+"
+        You must specify a computer"+scrEndColorflag()+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"ssh "+scrEndColorflag()+scrColorflag(c_yellow)+"computer
+        
+"
++scrEndColorflag()
+scrText(scrColorflag(c_red)+"
+        You must specify a computer"+scrEndColorflag()+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"ssh "+scrEndColorflag()+scrColorflag(c_yellow)+"computer
+        
+"
++scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+}    
+
+else if keyboard_string = "&gt;sudo"
+    {
+        txt+=scrColorflag(c_red)+"
+        You must specify a command"+scrEndColorflag()+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"sudo "+scrEndColorflag()+scrColorflag(c_yellow)+"command
+        
+"
++scrEndColorflag()
+scrText(scrColorflag(c_red)+"
+        You must specify a command"+scrEndColorflag()+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"sudo "+scrEndColorflag()+scrColorflag(c_yellow)+"command
+        
+"
++scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+}    
+    
+else if keyboard_string = "&gt;ls"
+    {
+        txt+=scrColorflag(c_aqua)+"
+        motd.bin"+scrEndColorflag()+scrColorflag(c_gray)+
+       "wilterk.mail
+        birthday.jpeg
+
+"
++scrEndColorflag()
+scrText(scrColorflag(c_aqua)+"
+        motd.bin"+scrEndColorflag()+scrColorflag(c_gray)+
+        "wilterk.mail
+        birthday.jpeg
+
+"
++scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+}
+else if (keyboard_string = "&gt;cat") ||(keyboard_string = "&gt;sudo cat")
+    {
+        txt+=scrColorflag(c_red)+"
+        You must specify a file to display"+scrEndColorflag()+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"cat "+scrEndColorflag()+scrColorflag(c_aqua)+"filename
+        
+"
++scrEndColorflag()
+scrText(scrColorflag(c_red)+"
+        You must specify a file to display"+scrEndColorflag()+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"cat "+scrEndColorflag()+scrColorflag(c_aqua)+"filename
+        
+"
++scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+}
+
+else if keyboard_string = "&gt;ssh wilterk"
+    {
+        txt+="
+        "
+        keyboard_string = "date_of_birth(dd/mm/yy)? ";
+        scrText("
+        date_of_birth(dd/mm/yy)? ")
+        inputText = keyboard_string;
+        exit
+    }
+
+str        = keyboard_string; // Tady dosaď svůj vstup
+splitArray = ds_list_create();
+actualWord = "";
+target[0]  = "&gt;cat"; target[1] = "birthday.jpeg"; target[2] = "motd.bin"; target[3] = "wilterk.mail";
+target[4]  = "date_of_birth(dd/mm/yy)?"; target[5]  = "05/11/85";
+target[6]  = "&gt;ssh"; target[7]  = "wilterk"; 
+target[8]  = "&gt;sudo"; target[9]  = "cat";
+pass       = true;
+
+// Naparsování vstupu
+str = str + " ";
+for (i = 1; i &lt;= string_length(str); i++)
+    {
+      // DEBUG - Zobrazí ASCII hodnotu iterovaného charu
+      // show_message(string(ord(string_char_at(str,i))) + string(string_char_at(str,i)));
+     if (string_char_at(str,i) == chr(32)) 
+        {
+         ds_list_add(splitArray,actualWord);
+         actualWord = "";
+        }
+     else
+         {
+           actualWord += string_char_at(str,i);
+         }
+    
+    }
+
+      //DEBUG - Zobrazí naparsovaný vstup
+   
+//for (i = 0; i &lt;= ds_list_size(splitArray); i++)
+    //{
+     //show_message(splitArray[| i]); 
+    //}
+
+
+
+/*for (i = 0; i &lt; array_length_1d(target); i++)
+    {
+     if (splitArray[| i] !=  target[i]) 
+        {
+         pass = false;
+         pass = -i;
+        }
+    }
+
+if (pass)
+   {
+   show_message("Vstup byl správný");
+   }
+else
+    {
+    show_message(string(abs(pass - 1)) + ". slovo je špatně");
+    }*/
+    
+if (splitArray[| 0] = target[0])
+{
+if (splitArray[| 1] = target[1])
+{
+txt += scrColorflag(c_red)+"
+       This file must be open as administrator
+       
+"+scrEndColorflag();
+scrText("
+       This file must be open as administrator
+       
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+else if (splitArray[| 1] = target[2])
+{
+txt+=scrColorflag(c_white)+"
+ You neeed move to another computer to use databse.
+ Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
+        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+
+"+scrEndColorflag();
+scrText(scrColorflag(c_white)+"
+ You neeed move to another computer to use databse.
+ Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
+        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+
+"+scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
+}
+else if (splitArray[| 1] = target[3])
+{
+txt +=  
+        scrColorflag(c_red)+" 
+        This file must be open as administrator
+        
+"+scrEndColorflag();
+scrText( scrColorflag(c_red)+" 
+        This file must be open as administrator
+        
+"+scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+else
+{
+txt += scrColorflag(c_red)+"
+        Unknow file '" +splitArray[| 1]+"'
+
+"+scrEndColorflag();
+scrText("
+        Unknow file '"+splitArray[| 1]+"'
+
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+exit
+}
+
+if (splitArray[| 0] = target[4])
+{
+if (splitArray[| 1] = target[5])
+{
+txt += scrColorflag(c_lime)+"
+        Access granted.
+
+"+scrEndColorflag();
+scrText("
+        Access granted.
+
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+alarm[1] = 20;
+}
+else
+{
+txt += scrColorflag(c_red)+"
+        Wrong date, access denied.
+
+"+scrEndColorflag();
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+scrText("
+        Wrong date, access denied.
+
+");
+}
+exit
+}
+
+if (splitArray[| 0] = target[6])
+{
+if (splitArray[| 1] = target[7])
+{
+txt += scrColorflag(c_red)+"
+        Eroor
+
+"+scrEndColorflag();
+scrText("
+        Eroor
+
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+alarm[1] = 20;
+}
+else
+{
+txt += scrColorflag(c_red)+"
+        Unknow computer '" +splitArray[| 1]+"'
+
+"+scrEndColorflag();
+scrText("
+        Unknow computer '"+splitArray[| 1]+"'
+
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+exit
+}
+
+
+
+if (splitArray[| 0] = target[8])
+{
+if (splitArray[| 1] = target[9])
+{
+if (splitArray[| 2] = target[1])
+{
+txt += scrColorflag(c_white)+"
+        Open picture: - na dortu je tricitka
+
+"+scrEndColorflag();
+scrText("
+        Open picture: - na dortu je tricitka
+
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+else if (splitArray[| 2] = target[3])
+{
+txt += scrColorflag(c_white)+"
+        Mail: 05/11/15 blablablablab - dnes ma narozky
+
+"+scrEndColorflag();
+scrText("
+        Mail: 05/11/15 blablablablab - dnes ma narozky
+
+");
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+else
+{
+txt += scrColorflag(c_red)+"
+        File does not exists or this file can not run as administrator."+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"sudo cat "+scrEndColorflag()+scrColorflag(c_gray)+"filename
+        
+"+scrEndColorflag();
+scrText(scrColorflag(c_red)+"
+        File does not exists or this file can not run as administrator."+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"sudo cat "+scrEndColorflag()+scrColorflag(c_gray)+"filename
+
+"+scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+exit
+}
+else
+{
+txt += scrColorflag(c_red)+"
+        Command does not exists or this command can not run as administrator."+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"sudo "+scrEndColorflag()+scrColorflag(c_yellow)+"command
+        
+"
++scrEndColorflag()
+scrText(scrColorflag(c_red)+"
+        Command does not exists or this command can not run as administrator."+scrColorflag(c_gray)+"
+        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"sudo "+scrEndColorflag()+scrColorflag(c_yellow)+"command
+        
+"
++scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+}
+}
+
+
+txt += 
+        scrColorflag(c_red)+"
+        command not found."+scrEndColorflag()+
+        scrColorflag(c_white) +" Use " +scrEndColorflag()+
+        scrColorflag(c_yellow)+"help "+scrEndColorflag()+
+        scrColorflag(c_white)+"to list available " +scrEndColorflag()+
+        scrColorflag(c_yellow)+"commands"+"."+scrEndColorflag()+ "
+
+"+scrEndColorflag();
+scrText(scrColorflag(c_red)+"
+        command not found."+scrEndColorflag()+
+        scrColorflag(c_white) +" Use " +scrEndColorflag()+
+        scrColorflag(c_yellow)+"help "+scrEndColorflag()+
+        scrColorflag(c_white)+"to list available " +scrEndColorflag()+
+        scrColorflag(c_yellow)+"commands"+"."+scrEndColorflag()+ "
+
+"+scrEndColorflag());
+keyboard_string = "&gt;";
+inputText = keyboard_string;   
+
+break;
+
 }
 
 
