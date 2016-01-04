@@ -957,15 +957,15 @@ exit
 else if keyboard_string = "&gt;ls"
     {
         txt+=scrColorflag(c_aqua)+"
-        motd.bin"+scrEndColorflag()+scrColorflag(c_gray)+
-       "wilterk.mail
+        motd.bin"+scrEndColorflag()+scrColorflag(c_red)+"
+        wilterk.mail
         birthday.jpeg
 
 "
 +scrEndColorflag()
 scrText(scrColorflag(c_aqua)+"
-        motd.bin"+scrEndColorflag()+scrColorflag(c_gray)+
-        "wilterk.mail
+        motd.bin"+scrEndColorflag()+scrColorflag(c_red)+"
+        wilterk.mail
         birthday.jpeg
 
 "
@@ -1278,6 +1278,10 @@ inputText = keyboard_string;
 
 break;
 
+case 4://---------------------------------------------------LEVEL4---------------------------------------------------
+keyboard_string = "&gt;";
+inputText = keyboard_string;
+exit
 }
 
 
