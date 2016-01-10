@@ -5,7 +5,9 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\sCake</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -22,6 +24,8 @@
   </fonts>
   <objects name="objects">
     <object>objects\oText</object>
+    <object>objects\oCake</object>
+    <object>objects\pictures</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\level1</room>
