@@ -17,6 +17,12 @@
       <script>scripts\scrColorflag.gml</script>
     </scripts>
     <script>scripts\scrText.gml</script>
+    <scripts name="Levels">
+      <script>scripts\scrLevel4.gml</script>
+      <script>scripts\scrLevel3.gml</script>
+      <script>scripts\scrLevel2.gml</script>
+      <script>scripts\scrLevel1.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font1</font>
