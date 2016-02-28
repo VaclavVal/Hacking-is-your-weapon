@@ -248,6 +248,9 @@ inputText = keyboard_string;
             <string>draw_set_font(font0);
 normal = scrColorflag(c_white)+inputText+vis+scrEndColorflag();
 draw_text_colored(x,y,txt+normal);
+draw_text_color(x,y+100,string_height(scrColorflag(c_white)+
+"ahoj"+
+scrEndColorflag()),c_red,c_red,c_red,c_red,1)
 </string>
           </argument>
         </arguments>

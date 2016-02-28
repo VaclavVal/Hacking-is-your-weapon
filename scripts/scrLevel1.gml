@@ -43,6 +43,7 @@ exit
         scrColorflag(c_white)+".
 
 "+scrEndColorflag());
+/*DEBUG - scrText( scrColorflag(c_white)+"the password is "+scrEndColorflag()+scrColorflag(c_lime)+"jackdaniel"+scrEndColorflag()+scrColorflag(c_white)+"."+scrEndColorflag());*/
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
@@ -119,4 +120,3 @@ scrText(scrColorflag(c_red)+"
 "+scrEndColorflag());
 keyboard_string = ">";
 inputText = keyboard_string;    
-

@@ -25,7 +25,6 @@
     </scripts>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\font1</font>
     <font>fonts\font0</font>
   </fonts>
   <objects name="objects">
