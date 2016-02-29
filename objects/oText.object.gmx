@@ -25,13 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>a = 1;
-un = 1
-vis = "│";
-alarm[0] = 20;
-txt="";
-keyboard_string = "&gt;";
-inputText="&gt;";
+            <string>///Nastavení proměnných
+
+a = 1;                  //povoleno vypsání úvodní zprávy (Step)
+un = 1;
+vis = "│";              //kurzor je viditelný
+alarm[0] = 20;          //(za 20st bude opět neviditelný)
+txt="";                 //proměnná do které se zapisuje veškerý text
+keyboard_string = "&gt;";  //nastavení &gt; znaku na začátku řádku
+inputText="&gt;";          //(inputText = keyboard_string)           
 </string>
           </argument>
         </arguments>
@@ -54,7 +56,9 @@ inputText="&gt;";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>txt+=scrColorflag(c_white)+"&gt;"+scrEndColorflag()+
+            <string>///Zpráva lvl 2
+//zpráva je vypsána s malým zpožděním
+txt+=scrColorflag(c_white)+"&gt;"+scrEndColorflag()+
 scrColorflag(c_red)+"ERROR please confirm your identity first."+scrEndColorflag()+
 scrColorflag(c_white)+"Use command "+scrEndColorflag()+
 scrColorflag(c_yellow)+"unlock "+scrEndColorflag()+
@@ -84,10 +88,12 @@ scrColorflag(c_white)+"to confirm your identity
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>txt = "";
-y = ystart;
-a=1;
-level++
+            <string>///Další Level
+
+txt = "";   //vymazání veškerého textu
+y = ystart; //návrat na původní pozici
+a=1;        //vypsání zprávy na začátku každého lvlu (Step)
+level++     //Postup na vyšší level
 </string>
           </argument>
         </arguments>
@@ -110,9 +116,11 @@ level++
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if vis = "│" {vis = " ";}
-else {vis = "│";}
-alarm[0] = 20;
+            <string>///Kurzor textu
+
+if vis = "│" {vis = " ";}   //zneviditělnění kurzoru (na 20steps)
+else {vis = "│";}           //zviditelnění kurzoru (na 20 steps)
+alarm[0] = 20;              //nastaavení alarmu - po 20steps proběhne změna
 </string>
           </argument>
         </arguments>
@@ -135,15 +143,19 @@ alarm[0] = 20;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>///Systém posouvání 
+
+
+if string_height(txt) &gt;=500             //Systém Posouvání (následování textu)
+{y=(-string_height(txt)+500)}
 
 
 
-if (a = 1)
+if (a = 1)                             //Vypsání úvodní zprávy...
 {
-switch level
+switch level                           //...rozdílné pro každý level 
     {
-    case 1:
+    case 1:                            //Level 1
             txt += scrColorflag(c_red)+"
 Access denied! Please "+scrEndColorflag()+
             scrColorflag(c_yellow)+"login"+scrEndColorflag()+
@@ -151,13 +163,13 @@ Access denied! Please "+scrEndColorflag()+
 
 "
     break;
-    case 2:
+    case 2:                            //Level 2
             txt+=scrColorflag(c_white)+"
 &gt;Welcome Jack Daniel.
 "+scrEndColorflag()
 alarm[2] = 50;
-break;
-case 3:
+    break;
+    case 3:                            //Level 3
 txt+=scrColorflag(c_white)+"
  &gt;You neeed move to another computer to use databse.
  &gt;Use commmand "+scrEndColorflag()+
@@ -165,15 +177,15 @@ txt+=scrColorflag(c_white)+"
         scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
 
 "+scrEndColorflag();
-break;
-case 4:
+    break;
+    case 4:                            //Level 4
 txt+=scrColorflag(c_white)+"
  &gt;Level 4 
  &gt;Thank you for playing :)
 
 "+scrEndColorflag();
     }
-a = 0;
+a = 0;                                //Ochrana proti mnohonásobnému vypisování úvodní zprávy
 }
 </string>
           </argument>
@@ -197,8 +209,14 @@ a = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>vis = "│";
+            <string>///Zviditelnění kurzoru
+
+//Opětovné zviditelnění kurzoru při zmáčknutí jakékoliv klávesy
+vis = "│";
 alarm[0] = 20;
+
+//Proměnná které kontroluje, co jsem napsal (InputText) = 
+//tomu, co uživatel zmáčkne na klávesnici
 inputText = keyboard_string;
 </string>
           </argument>
@@ -222,7 +240,8 @@ inputText = keyboard_string;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>level = 1;
+            <string>///Level = 1
+level = 1;
 </string>
           </argument>
         </arguments>
@@ -245,35 +264,11 @@ inputText = keyboard_string;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(font0);
-normal = scrColorflag(c_white)+inputText+vis+scrEndColorflag();
-draw_text_colored(x,y,txt+normal);
-draw_text_color(x,y+100,string_height(scrColorflag(c_white)+
-"ahoj"+
-scrEndColorflag()),c_red,c_red,c_red,c_red,1)
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="10" enumb="78">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/*alarm[1] = 1;
+            <string>///Vykreslení veškerého textu
+
+draw_set_font(font0);   //font
+normal = scrColorflag(c_white)+inputText+vis+scrEndColorflag(); //vis = kurzor textu
+draw_text_colored(x,y,txt+normal); //txt = vešeký předchozí text
 </string>
           </argument>
         </arguments>
@@ -296,9 +291,13 @@ scrEndColorflag()),c_red,c_red,c_red,c_red,1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scrText( scrColorflag(c_white)+keyboard_string +"
-"+scrEndColorflag());
+            <string>///Spouštění lvl Skriptů + přidání Key.Str. do txt
 
+//Uživatelem napsaný text se přidá do vypisovaného textu
+txt+=scrColorflag(c_white)+keyboard_string+"
+"+scrEndColorflag();
+
+//Spuštění skriptu pro každý level
 switch(level)
 {
 case 1: 

@@ -1,20 +1,24 @@
 //---------------------------------------------------LEVEL2---------------------------------------------------
+    
+    //--------------- MOTD ---------------\\
 if keyboard_string = ">motd"
     {
-       scrText(scrColorflag(c_red)+"
+       txt+=scrColorflag(c_red)+"
 ERROR please confirm your identity first."+scrEndColorflag()+
         scrColorflag(c_white)+"Use command "+scrEndColorflag()+
         scrColorflag(c_yellow)+"unlock "+scrEndColorflag()+
         scrColorflag(c_white)+"to confirm your identity "+scrEndColorflag()+ "
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
+
+    //--------------- HELP ---------------\\
 else if keyboard_string = ">help"
     {
-        scrText(scrColorflag(c_yellow)+"
+        txt+=scrColorflag(c_yellow)+"
         motd"+scrEndColorflag()+ 
         scrColorflag(c_white)+" - Display the last system message"+scrEndColorflag()+ 
         scrColorflag(c_yellow)+"
@@ -34,55 +38,65 @@ else if keyboard_string = ">help"
         scrColorflag(c_yellow)+" command "+scrEndColorflag()+
         scrColorflag(c_white)+"below and press enter to execute it.
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
     }
-
+    
+    //--------------- UNLOCK ---------------\\
 else if keyboard_string = ">unlock"
     {
-        scrText("
-        ")
+        txt+="
+        ";
         keyboard_string = "password? ";
         inputText = keyboard_string;
         exit
     }    
     
+    //--------------- LS ---------------\\
 else if keyboard_string = ">ls"
     {
-       scrText(scrColorflag(c_aqua)+"
+       txt+=scrColorflag(c_aqua)+"
         password.txt
         motd.bin
         help.doc
 
 "
-+scrEndColorflag())
++scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
+
+    //--------------- CAT ---------------\\
 else if keyboard_string = ">cat"
     {
-       scrText(scrColorflag(c_red)+"
+       txt+=scrColorflag(c_red)+"
         You must specify a file to display"+scrEndColorflag()+scrColorflag(c_gray)+"
         Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"cat "+scrEndColorflag()+scrColorflag(c_aqua)+"filename
         
 "
-+scrEndColorflag())
++scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
 
+
+
+//------------------------------------------- KOMBINOVANÁ SEKCE -------------------------------------------\\    
+
 str        = keyboard_string;
 splitArray = ds_list_create();
 actualWord = "";
+
+//---------- CÍLE ----------\\  
 target[0]  = ">cat"; target[1] = "password.txt"; target[2] = "motd.bin"; target[3] = "help.doc";
 target[4]  = "password?"; target[5]  = "EK02GB";
 pass       = true;
 
-
+//---------- SYSTÉM ----------\\ 
 str = str + " ";
 for (i = 1; i <= string_length(str); i++)
     {
@@ -97,33 +111,41 @@ for (i = 1; i <= string_length(str); i++)
          }
     
     }
-    
+//---------- PODMÍNKY ----------\\ 
+  
+//---------- 1. SLOVO = CAT ----------\\      
 if (splitArray[| 0] = target[0])
 {
+
+//---------- 2. SLOVO = PASSWORD.TXT ----------\\  
 if (splitArray[| 1] = target[1])
 {
-scrText( scrColorflag(c_white)+"
+txt+= scrColorflag(c_white)+"
        My password is 'EK02GB'
        
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 }
+
+//---------- 2. SLOVO = MOTD.BIN ----------\\ 
 else if (splitArray[| 1] = target[2])
 {
-scrText(scrColorflag(c_white)+">"+scrEndColorflag()+
+txt+=scrColorflag(c_white)+">"+scrEndColorflag()+
 scrColorflag(c_red)+"ERROR please confirm your identity first."+scrEndColorflag()+
 scrColorflag(c_white)+"Use command "+scrEndColorflag()+
 scrColorflag(c_yellow)+"unlock "+scrEndColorflag()+
 scrColorflag(c_white)+"to confirm your identity 
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 }
+
+//---------- 2. SLOVO = HELP.DOC ----------\\ 
 else if (splitArray[| 1] = target[3])
 {
-scrText(scrColorflag(c_yellow)+"
+txt+=scrColorflag(c_yellow)+"
         motd"+scrEndColorflag()+ 
         scrColorflag(c_white)+" - Display the last system message"+scrEndColorflag()+ 
         scrColorflag(c_yellow)+"
@@ -143,16 +165,18 @@ scrText(scrColorflag(c_yellow)+"
         scrColorflag(c_yellow)+" command "+scrEndColorflag()+
         scrColorflag(c_white)+"below and press enter to execute it.
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 }
+
+//---------- NEZNÁMÝ SOUBOR ----------\\ 
 else
 {
-scrText(scrColorflag(c_red)+"
+txt+=scrColorflag(c_red)+"
         Unknow file '" +splitArray[| 1]+"'
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 
 keyboard_string = ">";
 inputText = keyboard_string;
@@ -160,41 +184,46 @@ inputText = keyboard_string;
 exit
 }
 
+//---------- 1. SLOVO = PASSWORD? ----------\\ 
 if (splitArray[| 0] = target[4])
 {
+
+//---------- 2. SLOVO = EK02GB ----------\\ 
 if (splitArray[| 1] = target[5])
 {
-scrText( scrColorflag(c_lime)+"
+txt+= scrColorflag(c_lime)+"
         Access granted.
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 alarm[1] = 20;
 }
+
+//---------- 2. SLOVO ≠ EK02GB ----------\\ 
 else
 {
-scrText(scrColorflag(c_red)+"
+txt+=scrColorflag(c_red)+"
         Wrong password, access denied.
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 }
 exit
 }
 
-scrText(scrColorflag(c_red)+"
+//--------------- NEZNÁMÝ PŘÍKAZ ---------------\\
+txt+=scrColorflag(c_red)+"
         command not found."+scrEndColorflag()+
         scrColorflag(c_white) +" Use " +scrEndColorflag()+
         scrColorflag(c_yellow)+"help "+scrEndColorflag()+
         scrColorflag(c_white)+"to list available " +scrEndColorflag()+
         scrColorflag(c_yellow)+"commands"+"."+scrEndColorflag()+ "
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 
 keyboard_string = ">";
 inputText = keyboard_string;   
-
 
 

@@ -1,19 +1,23 @@
 //---------------------------------------------------LEVEL1---------------------------------------------------
-    if keyboard_string = ">motd"
+    
+    //--------------- MOTD ---------------\\
+    if keyboard_string = ">motd"                
     {
-scrText(scrColorflag(c_red)+"
+txt+=scrColorflag(c_red)+"
         Access denied! Please "+scrEndColorflag()+
         scrColorflag(c_yellow)+"login"+scrEndColorflag()+
         scrColorflag(c_white)+"."+scrEndColorflag()+"
 
-"+ scrEndColorflag());
+"+ scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
     }
-    else if keyboard_string = ">help"
+    
+    //--------------- HELP ---------------\\
+    else if keyboard_string = ">help"                
     {
-        scrText(scrColorflag(c_yellow)+"
+        txt+=scrColorflag(c_yellow)+"
         motd"+scrEndColorflag()+ 
         scrColorflag(c_white)+" - Display the last system message"+scrEndColorflag()+ 
         scrColorflag(c_yellow)+"
@@ -30,27 +34,27 @@ exit
         scrColorflag(c_yellow)+" command "+scrEndColorflag()+
         scrColorflag(c_white)+"below and press enter to execute it.
 
-"+scrEndColorflag())
+"+scrEndColorflag()
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
     }
-    else if keyboard_string = ">password"
+    
+    //--------------- PASSWORD ---------------\\
+    else if keyboard_string = ">password"                
     {
-        scrText( scrColorflag(c_white)+"
+    txt+= scrColorflag(c_white)+"
         the password is "+scrEndColorflag()+
         scrColorflag(c_lime)+"jackdaniel"+scrEndColorflag()+
         scrColorflag(c_white)+".
 
-"+scrEndColorflag());
-/*DEBUG - scrText( scrColorflag(c_white)+"the password is "+scrEndColorflag()+scrColorflag(c_lime)+"jackdaniel"+scrEndColorflag()+scrColorflag(c_white)+"."+scrEndColorflag());*/
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
     }
     
-    
-    
+    //--------------- LOGIN ---------------\\
     else if keyboard_string = ">login"
     {
         txt+="
@@ -60,13 +64,17 @@ exit
         exit
     }
     
+//------------------------------------------- KOMBINOVANÁ SEKCE -------------------------------------------\\    
+
 str        = keyboard_string;
 splitArray = ds_list_create();
 actualWord = "";
-target[0]  = "password?"; target[1] = "jackdaniel";
+
+//---------- CÍLE ----------\\  
+target[0]  = "password?"; target[1] = "jackdaniel";  
 pass       = true;
 
-
+//---------- SYSTÉM ----------\\  
 str = str + " ";
 for (i = 1; i <= string_length(str); i++)
     {
@@ -81,42 +89,48 @@ for (i = 1; i <= string_length(str); i++)
          }
     
     }
+
     
-if (splitArray[| 0] = target[0])
+//---------- PODMÍNKY ----------\\          
+
+//---------- 1. SLOVO = PASSWORD? ----------\\  
+if (splitArray[| 0] = target[0]) 
 {
+//---------- 2. SLOVO = JACKDANIEL ----------\\  
 if (splitArray[| 1] = target[1])
 {
-txt += scrColorflag(c_lime)+"
+txt+=scrColorflag(c_lime)+"
         Access granted.
 
 "+scrEndColorflag();
-scrText("
-        Access granted.
-
-");
 alarm[1] = 20;
 keyboard_string = ">";
 inputText = keyboard_string;
 }
+
 else
+
+//---------- 2. SLOVO ≠ JACKDANIEL ----------\\  
 {
-scrText(scrColorflag(c_red)+"
+txt+=scrColorflag(c_red)+"
         Wrong password, access denied.
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 }
 exit
 }
     
-scrText(scrColorflag(c_red)+"
+
+//--------------- NEZNÁMÝ PŘÍKAZ ---------------\\
+txt+=scrColorflag(c_red)+"
         command not found."+scrEndColorflag()+
         scrColorflag(c_white) +" Use " +scrEndColorflag()+
         scrColorflag(c_yellow)+"help "+scrEndColorflag()+
         scrColorflag(c_white)+"to list available " +scrEndColorflag()+
         scrColorflag(c_yellow)+"commands"+"."+scrEndColorflag()+ "
 
-"+scrEndColorflag());
+"+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;    

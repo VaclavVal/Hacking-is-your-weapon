@@ -13,10 +13,9 @@
   <scripts name="scripts">
     <scripts name="ColorText">
       <script>scripts\draw_text_colored.gml</script>
-      <script>scripts\scrEndColorflag.gml</script>
       <script>scripts\scrColorflag.gml</script>
+      <script>scripts\scrEndColorflag.gml</script>
     </scripts>
-    <script>scripts\scrText.gml</script>
     <scripts name="Levels">
       <script>scripts\scrLevel4.gml</script>
       <script>scripts\scrLevel3.gml</script>
