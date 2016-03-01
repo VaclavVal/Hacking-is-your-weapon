@@ -1,25 +1,26 @@
 //---------------------------------------------------LEVEL3---------------------------------------------------
-if keyboard_string = ">motd"
+
+    //--------------- MOTD / SUDO MOTD ---------------\\
+if (keyboard_string = ">motd")||(keyboard_string = ">sudo motd")
     {
        txt+=scrColorflag(c_white)+"
- You neeed move to another computer to use databse.
- Use commmand "+scrEndColorflag()+
-        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
-        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+    Forgotten your password? Look on your encrypted password in your computer.
+    Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"sudo "+scrEndColorflag()+
+        scrColorflag(c_white)+"to use command as administrator "+scrEndColorflag()+ "
 
 "+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
-else if keyboard_string = ">help"
+
+    //--------------- HELP / SUDO HELP ---------------\\
+else if (keyboard_string = ">help")||(keyboard_string = ">sudo help")
     {
         txt+=scrColorflag(c_yellow)+"
         motd"+scrEndColorflag()+ 
         scrColorflag(c_white)+" - Display the last system message"+scrEndColorflag()+ 
-        scrColorflag(c_yellow)+"
-        ssh"+scrEndColorflag()+ 
-        scrColorflag(c_white)+" - Move to another computer"+scrEndColorflag()+  
         scrColorflag(c_yellow)+"
         sudo"+scrEndColorflag()+ 
         scrColorflag(c_white)+" - Use"+scrEndColorflag()+ scrColorflag(c_yellow)+" command "+scrEndColorflag()+ scrColorflag(c_white)+"as andministrator"+scrEndColorflag()+ 
@@ -31,7 +32,11 @@ else if keyboard_string = ">help"
         scrColorflag(c_white)+" - Display tihs help"+scrEndColorflag()+
         scrColorflag(c_yellow)+"
         cat"+scrEndColorflag()+ 
-        scrColorflag(c_white)+" - Display file content
+        scrColorflag(c_white)+" - Display file content"+scrEndColorflag()+
+        scrColorflag(c_yellow)+"
+        login"+scrEndColorflag()+ 
+        scrColorflag(c_white)+" - Login on the system"+scrEndColorflag()+  
+        scrColorflag(c_yellow)+"
         
         Type your"+scrEndColorflag()+scrEndColorflag()+
         scrColorflag(c_yellow)+" command "+scrEndColorflag()+
@@ -43,19 +48,7 @@ inputText = keyboard_string;
 exit
     }
 
-else if keyboard_string = ">ssh"
-    {
-        txt+=scrColorflag(c_red)+"
-        You must specify a computer"+scrEndColorflag()+scrColorflag(c_gray)+"
-        Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"ssh "+scrEndColorflag()+scrColorflag(c_yellow)+"computer
-        
-"
-+scrEndColorflag();
-keyboard_string = ">";
-inputText = keyboard_string;
-exit
-}    
-
+    //--------------- SUDO ---------------\\
 else if keyboard_string = ">sudo"
     {
         txt+=scrColorflag(c_red)+"
@@ -69,12 +62,15 @@ inputText = keyboard_string;
 exit
 }    
     
-else if keyboard_string = ">ls"
+    //--------------- LS / SUDO LS ---------------\\
+else if (keyboard_string = ">ls")||(keyboard_string = ">sudo ls")
     {
         txt+=scrColorflag(c_aqua)+"
         motd.bin"+scrEndColorflag()+scrColorflag(c_gray)+"
-        wilterk.mail
-        birthday.jpeg
+        system.bin
+        aevans.mail
+        ASCII.jpeg
+        
 
 "
 +scrEndColorflag();
@@ -82,6 +78,8 @@ keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
+
+    //--------------- CAT / SUDO CAT ---------------\\
 else if (keyboard_string = ">cat") ||(keyboard_string = ">sudo cat")
     {
         txt+=scrColorflag(c_red)+"
@@ -95,24 +93,30 @@ inputText = keyboard_string;
 exit
 }
 
-else if keyboard_string = ">ssh wilterk"
+
+    //--------------- LOGIN / SUDO LOGIN---------------\\
+    else if (keyboard_string = ">login")||(keyboard_string = ">sudo login")
     {
         txt+="
         "
-        keyboard_string = "date_of_birth(dd/mm/yy)? ";
+        keyboard_string = "password? ";
         inputText = keyboard_string;
         exit
     }
 
+//------------------------------------------- KOMBINOVANÁ SEKCE -------------------------------------------\\        
+
 str        = keyboard_string; 
 splitArray = ds_list_create();
 actualWord = "";
-target[0]  = ">cat"; target[1] = "birthday.jpeg"; target[2] = "motd.bin"; target[3] = "wilterk.mail";
-target[4]  = "date_of_birth(dd/mm/yy)?"; target[5]  = "05/11/85";
-target[6]  = ">ssh"; target[7]  = "wilterk"; 
+
+//---------- CÍLE ----------\\  
+target[0]  = ">cat"; target[1] = "ASCII.jpeg"; target[2] = "motd.bin"; target[3] = "aevans.mail"; target[10] = "system.bin";
+target[4]  = "password?"; target[5]  = "Pa55word";
 target[8]  = ">sudo"; target[9]  = "cat";
 pass       = true;
 
+//---------- SYSTÉM ----------\\ 
 str = str + " ";
 for (i = 1; i <= string_length(str); i++)
     {
@@ -127,9 +131,13 @@ for (i = 1; i <= string_length(str); i++)
          }
     
     }
-    
+//---------- PODMÍNKY ----------\\ 
+  
+//---------- 1. SLOVO = CAT -----------\\       
 if (splitArray[| 0] = target[0])
 {
+
+//---------- 2. SLOVO = BIRTHDAY.JPEG (CAT ASCII.jpeg) ----------\\   
 if (splitArray[| 1] = target[1])
 {
 txt+= scrColorflag(c_red)+"
@@ -140,19 +148,22 @@ keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
+//---------- 2. SLOVO = MOTD.BIN (CAT MOTD.BIN) ----------\\  
 else if (splitArray[| 1] = target[2])
 {
 txt+=scrColorflag(c_white)+"
- You neeed move to another computer to use databse.
- Use commmand "+scrEndColorflag()+
-        scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
-        scrColorflag(c_white)+"to move to wilterk´s computer "+scrEndColorflag()+ "
+    Forgotten your password? Look on your encrypted password in your computer.
+    Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"sudo "+scrEndColorflag()+
+        scrColorflag(c_white)+"to use command as administrator "+scrEndColorflag()+ "
 
 "+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
+
+//---------- 2. SLOVO = WILTERK.MAIL (CAT AEVANS.MAIL) ----------\\  
 else if (splitArray[| 1] = target[3])
 {
 txt+=scrColorflag(c_red)+" 
@@ -163,6 +174,20 @@ keyboard_string = ">";
 inputText = keyboard_string;
 exit
 }
+
+//---------- 2. SLOVO = SYSTEM.BIN (CAT SYSTEM.BIN) ----------\\  
+else if (splitArray[| 1] = target[10])
+{
+txt+=scrColorflag(c_red)+" 
+        This file must be open as administrator
+        
+"+scrEndColorflag();
+keyboard_string = ">";
+inputText = keyboard_string;
+exit
+}
+
+//---------- NESPRÁVNÝ SOUBOR (CAT *****)----------\\  
 else
 {
 txt+=scrColorflag(c_red)+"
@@ -176,8 +201,12 @@ exit
 exit
 }
 
+
+//---------- 1. SLOVO = PASSWORD? ----------\\  
 if (splitArray[| 0] = target[4])
 {
+
+//---------- 2. SLOVO = Pa55word (password? Pa55word) ----------\\  
 if (splitArray[| 1] = target[5])
 {
 txt+=scrColorflag(c_lime)+"
@@ -188,39 +217,14 @@ keyboard_string = ">";
 inputText = keyboard_string;
 alarm[1] = 20;
 }
+
+//---------- NESPRÁVNÉ HESLO(PASSWORD? *****)----------\\  
 else
 {
 txt+=scrColorflag(c_red)+"
-        Wrong date, access denied.
-
-"+scrEndColorflag();
-keyboard_string = ">";
-inputText = keyboard_string;
-}
-exit
-}
-
-if (splitArray[| 0] = target[6])
-{
-if (splitArray[| 1] = target[7])
-{
-txt += scrColorflag(c_red)+"
-        Eroor
-
-"+scrEndColorflag();
-txt+="
-        Eroor
-
-";
-keyboard_string = ">";
-inputText = keyboard_string;
-alarm[1] = 20;
-}
-else
-{
-txt+=scrColorflag(c_red)+"
-        Unknow computer '" +splitArray[| 1]+"'
-
+        Wrong password, access denied.
+        Forgotten your password? Look on your encrypted password in your computer.
+        
 "+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
@@ -230,14 +234,19 @@ exit
 
 
 
+//---------- 1. SLOVO = SUDO (SUDO ...)----------\\
 if (splitArray[| 0] = target[8])
 {
+
+//---------- 2. SLOVO = CAT (SUDO CAT ...)----------\\
 if (splitArray[| 1] = target[9])
 {
+
+//---------- 3. SLOVO = ASCII.jpeg (SUDO CAT ASCII.jpeg)----------\\
 if (splitArray[| 2] = target[1])
 {
 with(pictures){instance_destroy()}
-instance_create(700,0,oCake)
+instance_create(700,0,oAscii)
 txt+=scrColorflag(c_gray)+"
         Picture was shown in another terminal
         Press Escape to close it.
@@ -246,28 +255,63 @@ txt+=scrColorflag(c_gray)+"
 keyboard_string = ">";
 inputText = keyboard_string;
 }
+
+//---------- 3. SLOVO = AEVANS.MAIL (SUDO CAT AEVANS.MAIL)----------\\
 else if (splitArray[| 2] = target[3])
 {
 txt+=scrColorflag(c_white)+"
-        Sent the 05/11/15 6:28 AM <wilterk@mail.com> wrote:
+        Sent the 04/10/14 8:38 PM <aevans@complex.com> wrote:
         
-        Hey Danny,
+        Hey bro,
+        I sent you your encrypted password. (you know - BIN  -> ASCII -> Lat. Alph.)
         
-        Tonight´s is Daniels birthday party. 
-        We bought a gift, everyone should give $5.
-        
-        See you tonight
-        
-        Will
+        A.
 
 "+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;
 }
+
+//---------- 3. SLOVO = MOTD.BIN (SUDO CAT MOTD.BIN)----------\\
+else if (splitArray[| 2] = target[2])
+{
+txt+=scrColorflag(c_white)+"
+    Forgotten your password? Look on your encrypted password in your computer.
+    Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"sudo "+scrEndColorflag()+
+        scrColorflag(c_white)+"to use command as administrator "+scrEndColorflag()+ "
+
+"+scrEndColorflag();
+keyboard_string = ">";
+inputText = keyboard_string;
+exit
+}
+
+//---------- 3. SLOVO = SYSTEM.BIN (SUDO CAT SYSTEM.BIN)----------\\
+else if (splitArray[| 2] = target[10])
+{
+txt+=scrColorflag(c_gray)+"
+    10 10 00 0 
+    11 00 00 1 
+    11 01 01 
+    11 01 01 
+    11 10 11 1 
+    11 01 11 1 
+    11 10 01 0 
+    11 00 10 0
+
+"+scrEndColorflag();
+keyboard_string = ">";
+inputText = keyboard_string;
+exit
+}
+
+
+//---------- NEZNÁMÝ SOUBOR (SUDO CAT *****)----------\\
 else
 {
 txt+=scrColorflag(c_red)+"
-        File does not exists or this file can not run as administrator."+scrColorflag(c_gray)+"
+        File does not exists."+scrColorflag(c_gray)+"
         Usage: "+scrEndColorflag()+scrColorflag(c_yellow)+"sudo cat "+scrEndColorflag()+scrColorflag(c_gray)+"filename
         
 "+scrEndColorflag();
@@ -277,10 +321,14 @@ exit
 }
 exit
 }
+
 else
 {
+
+
+//---------- NEZNÁMÝ PŘÍKAZ (SUDO *****)----------\\
 txt+=scrColorflag(c_red)+"
-        Command does not exists or this command can not run as administrator."+scrColorflag(c_gray)+"
+        Command does not exists"+scrColorflag(c_gray)+"
         Usage: "+scrEndColorflag()+scrColorflag(c_orange)+"sudo "+scrEndColorflag()+scrColorflag(c_yellow)+"command
         
 "
@@ -291,7 +339,7 @@ exit
 }
 }
 
-
+//---------- NEZNÁMÝ PŘÍKAZ (*****)----------\\
 txt+=scrColorflag(c_red)+"
         command not found."+scrEndColorflag()+
         scrColorflag(c_white) +" Use " +scrEndColorflag()+
@@ -302,4 +350,3 @@ txt+=scrColorflag(c_red)+"
 "+scrEndColorflag();
 keyboard_string = ">";
 inputText = keyboard_string;   
-

@@ -113,11 +113,11 @@ for (i = 1; i <= string_length(str); i++)
     }
 //---------- PODMÍNKY ----------\\ 
   
-//---------- 1. SLOVO = CAT ----------\\      
+//---------- 1. SLOVO = CAT (CAT .....) ----------\\      
 if (splitArray[| 0] = target[0])
 {
 
-//---------- 2. SLOVO = PASSWORD.TXT ----------\\  
+//---------- 2. SLOVO = PASSWORD.TXT (CAT PASSWORD.TXT) ----------\\  
 if (splitArray[| 1] = target[1])
 {
 txt+= scrColorflag(c_white)+"
@@ -128,7 +128,7 @@ keyboard_string = ">";
 inputText = keyboard_string;
 }
 
-//---------- 2. SLOVO = MOTD.BIN ----------\\ 
+//---------- 2. SLOVO = MOTD.BIN (CAT MOTD.BIN) ----------\\ 
 else if (splitArray[| 1] = target[2])
 {
 txt+=scrColorflag(c_white)+">"+scrEndColorflag()+
@@ -142,7 +142,7 @@ keyboard_string = ">";
 inputText = keyboard_string;
 }
 
-//---------- 2. SLOVO = HELP.DOC ----------\\ 
+//---------- 2. SLOVO = HELP.DOC (CAT HELP.DOC) ----------\\ 
 else if (splitArray[| 1] = target[3])
 {
 txt+=scrColorflag(c_yellow)+"
@@ -170,7 +170,7 @@ keyboard_string = ">";
 inputText = keyboard_string;
 }
 
-//---------- NEZNÁMÝ SOUBOR ----------\\ 
+//---------- NEZNÁMÝ SOUBOR (CAT *****) ----------\\ 
 else
 {
 txt+=scrColorflag(c_red)+"
@@ -184,11 +184,11 @@ inputText = keyboard_string;
 exit
 }
 
-//---------- 1. SLOVO = PASSWORD? ----------\\ 
+//---------- 1. SLOVO = PASSWORD? (PASSWORD? .....) ----------\\ 
 if (splitArray[| 0] = target[4])
 {
 
-//---------- 2. SLOVO = EK02GB ----------\\ 
+//---------- 2. SLOVO = EK02GB (PASSWORD? EKO2GB) ----------\\ 
 if (splitArray[| 1] = target[5])
 {
 txt+= scrColorflag(c_lime)+"
@@ -200,7 +200,7 @@ inputText = keyboard_string;
 alarm[1] = 20;
 }
 
-//---------- 2. SLOVO ≠ EK02GB ----------\\ 
+//---------- NESPRÁVNÉ HESLO (PASSWORD? *****) ----------\\ 
 else
 {
 txt+=scrColorflag(c_red)+"
@@ -213,7 +213,7 @@ inputText = keyboard_string;
 exit
 }
 
-//--------------- NEZNÁMÝ PŘÍKAZ ---------------\\
+//--------------- NEZNÁMÝ PŘÍKAZ (*****) ---------------\\
 txt+=scrColorflag(c_red)+"
         command not found."+scrEndColorflag()+
         scrColorflag(c_white) +" Use " +scrEndColorflag()+
@@ -225,5 +225,4 @@ txt+=scrColorflag(c_red)+"
 
 keyboard_string = ">";
 inputText = keyboard_string;   
-
 

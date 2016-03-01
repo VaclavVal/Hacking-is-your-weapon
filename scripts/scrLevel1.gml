@@ -3,10 +3,14 @@
     //--------------- MOTD ---------------\\
     if keyboard_string = ">motd"                
     {
-txt+=scrColorflag(c_red)+"
+txt+=scrColorflag(c_white)+"
+        Wellcome in the"+scrEndColorflag()+
+        scrColorflag(c_aqua)+" wWw "+scrEndColorflag()+
+        scrColorflag(c_white)+ "complex - a secret government company."+scrEndColorflag()+
+        scrColorflag(c_red)+"
         Access denied! Please "+scrEndColorflag()+
         scrColorflag(c_yellow)+"login"+scrEndColorflag()+
-        scrColorflag(c_white)+"."+scrEndColorflag()+"
+        scrColorflag(c_white)+" to proceed."+scrEndColorflag()+"
 
 "+ scrEndColorflag();
 keyboard_string = ">";
@@ -93,10 +97,10 @@ for (i = 1; i <= string_length(str); i++)
     
 //---------- PODMÍNKY ----------\\          
 
-//---------- 1. SLOVO = PASSWORD? ----------\\  
+//---------- 1. SLOVO = PASSWORD? (PASSWORD .....) ----------\\  
 if (splitArray[| 0] = target[0]) 
 {
-//---------- 2. SLOVO = JACKDANIEL ----------\\  
+//---------- 2. SLOVO = JACKDANIEL (PASSWORD JAACKDANIEL) ----------\\  
 if (splitArray[| 1] = target[1])
 {
 txt+=scrColorflag(c_lime)+"
@@ -110,7 +114,7 @@ inputText = keyboard_string;
 
 else
 
-//---------- 2. SLOVO ≠ JACKDANIEL ----------\\  
+//---------- NESPRÁVNÉ HESLO (PASSWORD *****) ----------\\  
 {
 txt+=scrColorflag(c_red)+"
         Wrong password, access denied.
@@ -123,7 +127,7 @@ exit
 }
     
 
-//--------------- NEZNÁMÝ PŘÍKAZ ---------------\\
+//--------------- NEZNÁMÝ PŘÍKAZ (*****) ---------------\\
 txt+=scrColorflag(c_red)+"
         command not found."+scrEndColorflag()+
         scrColorflag(c_white) +" Use " +scrEndColorflag()+

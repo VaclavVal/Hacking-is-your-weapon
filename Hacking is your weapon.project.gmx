@@ -4,9 +4,13 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\sMoonEcho</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sCake</sprite>
+    <sprite>sprites\sAscii</sprite>
+    <sprite>sprites\sWwww</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -29,10 +33,12 @@
   <objects name="objects">
     <object>objects\oText</object>
     <object>objects\oCake</object>
+    <object>objects\oWww</object>
+    <object>objects\oAscii</object>
     <object>objects\pictures</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\level1</room>
+    <room>rooms\rGame</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

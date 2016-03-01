@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Nastavení proměnných
+            <string>///Nastavení proměnných + Hudba
 
 a = 1;                  //povoleno vypsání úvodní zprávy (Step)
 un = 1;
@@ -34,6 +34,11 @@ alarm[0] = 20;          //(za 20st bude opět neviditelný)
 txt="";                 //proměnná do které se zapisuje veškerý text
 keyboard_string = "&gt;";  //nastavení &gt; znaku na začátku řádku
 inputText="&gt;";          //(inputText = keyboard_string)           
+
+//Sound
+
+if !audio_is_playing(sMoonEcho)
+{audio_play_sound(sMoonEcho,0,1)}
 </string>
           </argument>
         </arguments>
@@ -156,21 +161,66 @@ if (a = 1)                             //Vypsání úvodní zprávy...
 switch level                           //...rozdílné pro každý level 
     {
     case 1:                            //Level 1
-            txt += scrColorflag(c_red)+"
+            txt += scrColorflag(c_aqua)+"
+        __          __
+        \ \        / /        
+__      _\ \  /\  / /_      __
+\ \ /\ / /\ \/  \/ /\ \ /\ / /
+ \ V  V /  \  /\  /  \ V  V / 
+  \_/\_/    \/  \/    \_/\_/  
+            
+"+scrColorflag(c_white)+"
+Wellcome in the"+scrEndColorflag()+
+scrColorflag(c_aqua)+" wWw "+scrEndColorflag()+
+scrColorflag(c_white)+ "complex - a secret government company."+scrEndColorflag()+
+scrColorflag(c_red)+"
 Access denied! Please "+scrEndColorflag()+
-            scrColorflag(c_yellow)+"login"+scrEndColorflag()+
-            scrColorflag(c_white)+"."+scrEndColorflag()+ "
+scrColorflag(c_yellow)+"login"+scrEndColorflag()+
+scrColorflag(c_white)+" to proceed."+scrEndColorflag()+"
 
-"
+"+ scrEndColorflag();
     break;
     case 2:                            //Level 2
-            txt+=scrColorflag(c_white)+"
+            txt+=scrColorflag(c_aqua)+"
+        __          __      
+        \ \        / /        
+__      _\ \  /\  / /_      __
+\ \ /\ / /\ \/  \/ /\ \ /\ / /
+ \ V  V /  \  /\  /  \ V  V / 
+  \_/\_/    \/  \/    \_/\_/  
+            
+            "+scrEndColorflag()+scrColorflag(c_white)+"
 &gt;Welcome Jack Daniel.
 "+scrEndColorflag()
 alarm[2] = 50;
     break;
-    case 3:                            //Level 3
-txt+=scrColorflag(c_white)+"
+    case 3:                             //Level 3
+ txt+=scrColorflag(c_aqua)+"
+        __          __
+        \ \        / /        
+__      _\ \  /\  / /_      __
+\ \ /\ / /\ \/  \/ /\ \ /\ / /
+ \ V  V /  \  /\  /  \ V  V / 
+  \_/\_/    \/  \/    \_/\_/  
+            
+            "+scrEndColorflag()+scrColorflag(c_white)+"
+ Forgotten your password? Look on your encrypted password in your computer.
+ Use commmand "+scrEndColorflag()+
+        scrColorflag(c_yellow)+"sudo "+scrEndColorflag()+
+        scrColorflag(c_white)+"to use command as administrator "+scrEndColorflag()+ "
+
+"+scrEndColorflag();    
+    break;
+    case 4:                            //Level 4
+txt+=scrColorflag(c_aqua)+"
+        __          __
+        \ \        / /        
+__      _\ \  /\  / /_      __
+\ \ /\ / /\ \/  \/ /\ \ /\ / /
+ \ V  V /  \  /\  /  \ V  V / 
+  \_/\_/    \/  \/    \_/\_/  
+            
+            "+scrEndColorflag()+scrColorflag(c_white)+"
  &gt;You neeed move to another computer to use databse.
  &gt;Use commmand "+scrEndColorflag()+
         scrColorflag(c_yellow)+"ssh wilterk "+scrEndColorflag()+
@@ -178,15 +228,26 @@ txt+=scrColorflag(c_white)+"
 
 "+scrEndColorflag();
     break;
-    case 4:                            //Level 4
-txt+=scrColorflag(c_white)+"
- &gt;Level 4 
+    case 5:                            //Level 5
+txt+=scrColorflag(c_aqua)+"
+        __          __
+        \ \        / /        
+__      _\ \  /\  / /_      __
+\ \ /\ / /\ \/  \/ /\ \ /\ / /
+ \ V  V /  \  /\  /  \ V  V / 
+  \_/\_/    \/  \/    \_/\_/  
+            
+            "+scrEndColorflag()+scrColorflag(c_white)+"
+ &gt;Level 5 
  &gt;Thank you for playing :)
 
 "+scrEndColorflag();
     }
 a = 0;                                //Ochrana proti mnohonásobnému vypisování úvodní zprávy
 }
+
+if !audio_is_playing(sMoonEcho)
+{audio_play_sound(sMoonEcho,0,1)}
 </string>
           </argument>
         </arguments>
